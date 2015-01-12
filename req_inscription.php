@@ -37,7 +37,8 @@ try {
         $sql->bindValue(":email", $email);  
         $sql->bindValue(":password", $password);
         $sql->bindValue(":sexe", $sexe);
-        $sql->bindValue(":couleur", $couleur);
+        $coul = substr($couleur, 1);
+        $sql->bindValue(":couleur", $coul);
         if ($nom == "") $sql->bindValue(":nom",null);
         else $sql->bindValue(":nom", $nom);
         if ($prenom == "") $sql->bindValue(":prenom",null);
@@ -78,7 +79,8 @@ try {
                 header("Location: index.php?erreur=".urlencode("un problème est survenu"));  
             }  
             else {
-            	echo "test";
+            	$valeur = $sql->fetch(PDO::FETCH_BOUND);
+                $_SESSION['email'] = $valeur;
                 // on récupère la ligne qui nous intéresse avec $sql->fetch(),   
                 // et on enregistre les données dans la session avec $_SESSION["..."]=... 
 

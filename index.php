@@ -1,10 +1,9 @@
 <?php
-    // Démarrage de la session utilisateur
-    session_start();
-    $session_login = (isset($_GET['email'])) ? htmlentities($_GET['email']) : NULL;
-    if ( $session_login ) {
-        $_SESSION['email'] = $session_login;
+    $session_email = (isset($_GET['email'])) ? htmlentities($_GET['email']) : NULL;
+    if ( $session_email ) {
+        $_SESSION['email'] = $session_email;
     }
+
     $page = (isset($_GET['page'])) ? htmlentities($_GET['page']) : NULL;
 ?>
 
@@ -20,13 +19,23 @@
         <div class="container">
             <div class="navbar-header">
 				 <a class="navbar-brand" href="index.php?page=Accueil.tpl"><img id="logo-navbar">Accueil</a>
-				 <a class="navbar-brand" href="index.php?page=Connexion.tpl"><img id="logo-navbar">Connexion</a>
-				 <a class="navbar-brand" href="index.php?page=Inscription.tpl"><img id="logo-navbar">Inscription</a>
-				 <?php if ( isset($_SESSION['email']) ) {
-                        echo "<a class='navbar-brand'>Accueil</a>";
-                    }
-                 ?>
+				 
 			</div>
+            <div class="collapse navbar-collapse">
+                
+             <?php if ( isset($_SESSION['email']) ) {
+                    echo "<label class='navbar-brand'>".$_SESSION['email']."</label>
+                    <button class='button-default'>Deconnexion</button>";
+
+                }
+                else {
+                    echo "
+                    <a class='navbar-brand' href='index.php?page=Connexion.tpl'>Connexion</a>
+                    <a class='navbar-brand' href='index.php?page=Inscription.tpl'>Inscription</a>";
+                }
+                
+             ?>
+            </div>
 		</div>
 	</div>
 

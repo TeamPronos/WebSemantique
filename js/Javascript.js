@@ -88,4 +88,5 @@ function loadProfilePic(e) {
     }  
     // on charge l'image pour de vrai, lorsque ce sera terminé le callback loadProfilePic sera appelé.  
     reader.readAsDataURL(file);  
-}  
+}
+
