@@ -79,14 +79,19 @@ try {
                 header("Location: index.php?erreur=".urlencode("un problème est survenu"));  
             }  
             else {
-            	$valeur = $sql->fetch(PDO::FETCH_BOUND);
-                $_SESSION['email'] = $valeur;
+            	$sqlfetch = $sql->fetch();
+                $_SESSION['id'] = $sqlfetch['id'];
+                $_SESSION['email'] = $sqlfetch['email'];
+                $_SESSION['nom'] = $sqlfetch['nom'];
+                $_SESSION['prenom'] = $sqlfetch['prenom'];
+                $_SESSION['couleur'] = $sqlfetch['couleur'];
+                $_SESSION['profilepic'] = $sqlfetch['profilepic'];
                 // on récupère la ligne qui nous intéresse avec $sql->fetch(),   
                 // et on enregistre les données dans la session avec $_SESSION["..."]=... 
 
             }  
   
-            include('index.php');
+            header("location : index.php");
         }  
         $dbh = null;  
     }  
